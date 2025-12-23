@@ -11,10 +11,10 @@
     "dev": "nodemon src/server.js",
     "cli": "node src/cli/index.js",
     "test": "jest --coverage",
-    "docker:build": "docker-compose build",
-    "docker:up": "docker-compose up -d",
-    "docker:logs": "docker-compose logs -f",
-    "docker:down": "docker-compose down"
+    "docker:build": "docker-compose -f ../Docker/docker-compose.yml build",
+    "docker:up": "docker-compose -f ../Docker/docker-compose.yml up -d",
+    "docker:logs": "docker-compose -f ../Docker/docker-compose.yml logs -f",
+    "docker:down": "docker-compose -f ../Docker/docker-compose.yml down"
   },
   "keywords": [
     "video",

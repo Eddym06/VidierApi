@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/logo.png" alt="VidierApi Logo" width="150" height="150" />
+<img src="backend/public/logo.png" alt="VidierApi Logo" width="150" height="150" />
 
 # 🎬 VidierApi
 

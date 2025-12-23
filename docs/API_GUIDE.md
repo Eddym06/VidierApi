@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="/logo.png" alt="VidierApi Logo" width="120" height="120" />
+  <img src="../backend/public/logo.png" alt="VidierApi Logo" width="120" height="120" />
   <h1>VidierApi</h1>
   <p><strong>Professional Programmable Video Engine</strong></p>
   <p>
