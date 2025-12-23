@@ -6,7 +6,7 @@
 
 ### **Professional Video Generation Engine Powered by FFmpeg**
 
-Transform JSON into stunning videos with real-time progress tracking, automation workflows, and enterprise-grade features.
+Transform JSON into stunning videos with real-time progress tracking, automation workflows, and professional-grade features.
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?style=for-the-badge)](https://github.com/yourusername/VidierApi)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=for-the-badge)](LICENSE)

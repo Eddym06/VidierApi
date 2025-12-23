@@ -18,7 +18,9 @@ services:
 
   # VidierApi application
   vidierapi:
-    build: .
+    build:
+      context: ../backend
+      dockerfile: ../Docker/Dockerfile
     container_name: vidierapi-app
     ports:
       - "3002:3002"
@@ -28,12 +30,12 @@ services:
       - REDIS_HOST=redis
       - REDIS_PORT=6379
     volumes:
-      - ./temp:/app/temp
-      - ./output:/app/output
-      - ./logs:/app/logs
-      - ./public:/app/public
-      - ./examples:/app/examples
-      - ./src:/app/src
+      - ../backend/temp:/app/temp
+      - ../backend/output:/app/output
+      - ../backend/logs:/app/logs
+      - ../backend/public:/app/public
+      - ../backend/examples:/app/examples
+      - ../backend/src:/app/src
     depends_on:
       redis:
         condition: service_healthy
