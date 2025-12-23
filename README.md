@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="public/logo.png" alt="VidierApi Logo" width="150" height="150" />
+
 # 🎬 VidierApi
 
 ### **Professional Video Generation Engine Powered by FFmpeg**
@@ -20,7 +22,9 @@ Transform JSON into stunning videos with real-time progress tracking, automation
 
 ## 🌟 What is VidierApi?
 
-**VidierApi** is a powerful, production-ready video generation platform that converts JSON specifications into professional videos using FFmpeg. Perfect for content creators, marketers, developers, and automation enthusiasts who need to generate videos at scale.
+**VidierApi** is a powerful **Open Source** video generation platform designed to **automate video creation via API**. It converts simple JSON specifications into professional videos using FFmpeg, making it the perfect engine for programmatic content creation.
+
+It features a dedicated **n8n Community Node**, allowing seamless integration into your automation workflows for bulk video processing, social media automation, and dynamic content generation.
 
 ### 💡 Why VidierApi?
 
@@ -1040,7 +1044,7 @@ NODE_ENV=development
 
 ## ⭐ Star this repository if you find it useful!
 
-### Made with 💙 by the VidierApi Team
+### Made with ❤️ by Eddy Manuel
 
 **Transform your media automation workflows today!**
 
