@@ -19,7 +19,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Eddym06/VidierApi.git"
+    "url": "git+https://github.com/Eddym06/VidierApi.git",
+    "directory": "n8n-nodes-vidierapi"
+  },
+  "bugs": {
+    "url": "https://github.com/Eddym06/VidierApi/issues"
   },
   "main": "index.js",
   "scripts": {

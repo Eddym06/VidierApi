@@ -1,5 +1,6 @@
 # n8n-nodes-vidierapi
 
+[![npm version](https://badge.fury.io/js/n8n-nodes-vidierapi.svg)](https://badge.fury.io/js/n8n-nodes-vidierapi)
 ![VidierApi Logo](https://vidierapi.com/logo.png)
 
 This is an n8n community node that lets you use [VidierApi](https://vidierapi.com) in your workflows.
