@@ -1,4 +1,4 @@
-# vidier-api
+# n8n-nodes-vidierapi
 
 ![VidierApi Logo](https://vidierapi.com/logo.png)
 
@@ -16,7 +16,7 @@ Follow the [installation guide](https://docs.n8n.io/integrations/community-nodes
 
 1. Go to **Settings > Community Nodes**
 2. Select **Install**
-3. Enter `vidier-api` in **Enter npm package name**
+3. Enter `n8n-nodes-vidierapi` in **Enter npm package name**
 4. Agree to the risks and select **Install**
 
 After installing the node, you can use it like any other node in n8n.

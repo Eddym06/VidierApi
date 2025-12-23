@@ -1,5 +1,5 @@
 {
-  "name": "vidier-api",
+  "name": "n8n-nodes-vidierapi",
   "version": "1.0.0",
   "description": "n8n community node for VidierApi - Professional video generation",
   "keywords": [
@@ -12,14 +12,14 @@
     "automation"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/vidierapi/n8n-nodes-vidierapi",
+  "homepage": "https://github.com/Eddym06/VidierApi/tree/main/n8n-nodes-vidierapi",
   "author": {
     "name": "VidierApi Team",
     "email": "support@vidierapi.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vidierapi/n8n-nodes-vidierapi.git"
+    "url": "git+https://github.com/Eddym06/VidierApi.git"
   },
   "main": "index.js",
   "scripts": {
