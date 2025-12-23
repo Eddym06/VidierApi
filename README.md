@@ -513,8 +513,13 @@ VidierApi provides **first-class n8n support** for workflow automation. Create v
 
 ### Option 1: Community Node (Recommended) ⭐
 
-Install the official VidierApi community node for n8n:
+**Installation via n8n UI:**
+1. Go to **Settings > Community Nodes**
+2. Click **Install**
+3. Enter `n8n-nodes-vidierapi`
+4. Click **Install**
 
+**Manual Installation (Self-hosted):**
 ```bash
 cd ~/.n8n
 npm install n8n-nodes-vidierapi
