@@ -1,0 +1,14 @@
+{
+    "template": "story",
+    "image": {
+        "src": "https://images.unsplash.com/photo-1517404215738-15263e9f9178?w=1080",
+        "effect": "none"
+    },
+    "text": {
+        "content": "Story Template Test"
+    },
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "volume": 0.5
+    }
+}

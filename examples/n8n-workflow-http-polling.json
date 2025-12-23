@@ -1,0 +1,351 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "id": "ad5320f3-1193-407a-bd69-84a87a2cbef0",
+      "name": "Esperar Inicio1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2880,
+        2368
+      ],
+      "webhookId": "wait-initial"
+    },
+    {
+      "parameters": {
+        "url": "=http:/YOUR_SERVER:3002/api/status/{{ $('POST Render Job').first().json.jobId }}",
+        "options": {}
+      },
+      "id": "cbb3c70b-7075-4882-8891-78ed61d2f688",
+      "name": "GET Status1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3056,
+        2368
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "id": "condition-1",
+              "leftValue": "={{ $json.job.status }}",
+              "rightValue": "completed",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ada057fc-7a74-49c3-af11-820d980f975c",
+      "name": "¿Completado?1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        3232,
+        2368
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://YOUR_SERVER:3002/api/download/{{ $json.job.id }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "76c11af7-11d9-4dff-ba3c-e5bcba923576",
+      "name": "GET Download Video1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3440,
+        2256
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "3cdc50f5-7c3b-4ed3-86fe-3bc0fd8c062e",
+      "name": "Esperar y Reintentar1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3440,
+        2464
+      ],
+      "webhookId": "wait-loop"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "67da7d27-c021-45c6-a27a-9b8b8609aaac",
+              "leftValue": "={{ $json.job.status }}",
+              "rightValue": "=processing",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        3648,
+        2464
+      ],
+      "id": "113f994a-ba46-4992-be2c-b762cabc812a",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eeafadfb-1189-4d3a-b1c8-fa7ef178966e",
+              "name": "imagen_url",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            },
+            {
+              "id": "2825b203-dfc0-46e1-9515-7f4e0108714f",
+              "name": "audio_url",
+              "value": "={{ $('Edit Fields2').item.json.audio_url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2464,
+        2368
+      ],
+      "id": "25ada0f8-7d7d-409b-b75d-2b3004a085f7",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "content": "## Parser for URL names",
+        "height": 208,
+        "width": 288,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2336,
+        2320
+      ],
+      "id": "2b362c39-1bb3-4820-a1bf-66136d7d7ebe",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Using HTTP nodes",
+        "height": 576,
+        "width": 1648,
+        "color": 6
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        2128
+      ],
+      "id": "8332037b-7d09-4429-a637-f035b08447f7",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Status requester",
+        "height": 192,
+        "width": 464,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3392,
+        2416
+      ],
+      "id": "ef7cc246-7b59-4a0f-ba8f-83fc7aac41c6",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "## Video downloader",
+        "height": 208,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        3392,
+        2192
+      ],
+      "id": "b8460456-d0ae-4250-b0e4-897aa00947ed",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://YOUR_SERVER:3002/api/render",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"image\": {\n    \"src\": \"{{ $json.imagen_url }}\",\n    \"effect\": \"kenburns\",\n    \"zoom\": 1.2\n  },\n  \"audio\": {\n    \"src\": \"{{ $json.audio_url }}\",\n    \"volume\": 0.7\n  },\n  \"config\": {\n    \"width\": 1280,\n    \"height\": 720,\n    \"fps\": 25,\n    \"preset\": \"fast\",\n    \"crf\": 28\n  }\n}",
+        "options": {}
+      },
+      "id": "69e81963-8f98-4aa2-a92c-8cff21eaa2b1",
+      "name": "POST Render Job",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2704,
+        2368
+      ]
+    },
+    {
+      "parameters": {
+        "content": "## Video upload and status request",
+        "height": 208,
+        "width": 528
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        2320
+      ],
+      "id": "b35e7396-d8a3-488a-9b86-3a2c9b6a4477",
+      "name": "Sticky Note7"
+    }
+  ],
+  "connections": {
+    "Esperar Inicio1": {
+      "main": [
+        [
+          {
+            "node": "GET Status1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET Status1": {
+      "main": [
+        [
+          {
+            "node": "¿Completado?1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "¿Completado?1": {
+      "main": [
+        [
+          {
+            "node": "GET Download Video1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Esperar y Reintentar1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GET Download Video1": {
+      "main": [
+        []
+      ]
+    },
+    "Esperar y Reintentar1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "GET Status1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        []
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "POST Render Job",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "POST Render Job": {
+      "main": [
+        [
+          {
+            "node": "Esperar Inicio1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "d605ba4d36d9204a8eb69f9137140d9f6f6c75e4b6861725e763c19e539e11aa"
+  }
+}

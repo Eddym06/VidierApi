@@ -1,0 +1,20 @@
+{
+    "description": "Vertical video format optimized for Stories/TikTok",
+    "config": {
+        "width": 1080,
+        "height": 1920,
+        "fps": 30,
+        "preset": "fast"
+    },
+    "transition": {
+        "type": "fade",
+        "duration": 0.5
+    },
+    "text": {
+        "position": "center",
+        "fontSize": 80,
+        "color": "#FFFFFF",
+        "backgroundColor": "#000000AA",
+        "fontFamily": "Arial"
+    }
+}

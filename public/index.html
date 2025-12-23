@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VidierApi - Professional Video Generation</title>
+  <link rel="stylesheet" href="/css/styles.css?v=3.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <!-- Animated Background -->
+  <div class="bg-gradient"></div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <div class="logo">
+        <img src="/logo.png" alt="VidierApi" class="logo-icon" style="height: 60px; width: auto; margin-right: 15px;">
+        <span class="logo-text">VidierApi</span>
+      </div>
+      <nav class="nav">
+        <a href="#" class="nav-link active">Editor</a>
+        <a href="/api/docs" class="nav-link">📚 API Docs</a>
+        <a href="/api/health" class="nav-link">Status</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="container">
+      <!-- Hero Section -->
+      <div id="editor-view">
+        <section class="hero">
+          <h1 class="hero-title">
+            Create <span class="gradient-text">Amazing Videos</span><br>
+            from JSON in Seconds
+          </h1>
+          <p class="hero-subtitle">
+            Professional FFmpeg-powered video generation with real-time progress tracking
+          </p>
+        </section>
+
+        <!-- Editor Section -->
+        <section class="editor-section">
+          <div class="grid">
+            <!-- Left: JSON Editor -->
+            <div class="card editor-card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  Video Specification
+                </h3>
+                <div class="card-actions">
+                  <select id="exampleSelect" class="btn btn-secondary btn-sm"
+                    style="cursor: pointer; outline: none; appearance: auto; background-color: rgba(255, 255, 255, 0.1); color: var(--text-primary); max-width: 180px;">
+                    <option value="" disabled selected style="background: #333;">Load Example...</option>
+                  </select>
+                  <button class="btn btn-secondary btn-sm" id="validateBtn">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                      <path d="M9 11l3 3L22 4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                      <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                    Validate
+                  </button>
+                </div>
+              </div>
+              <div class="editor-container">
+                <textarea id="jsonEditor" spellcheck="false"></textarea>
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-primary btn-lg btn-full" id="renderBtn">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2" />
+                    <path d="M10 8l6 4-6 4V8z" fill="currentColor" />
+                  </svg>
+                  Render Video
+                </button>
+              </div>
+            </div>
+
+            <!-- Right: Preview & Progress -->
+            <div class="card preview-card">
+              <div class="card-header">
+                <h3 class="card-title">
+                  <svg class="icon" viewBox="0 0 24 24" fill="none">
+                    <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2" />
+                    <path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+                  </svg>
+                  Preview & Status
+                </h3>
+              </div>
+              <div class="preview-content">
+                <!-- Initial State -->
+                <div id="initialState" class="preview-state">
+                  <svg class="preview-icon" viewBox="0 0 24 24" fill="none">
+                    <path d="M23 7l-7 5 7 5V7zM14 5v14a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h8a2 2 0 012 2z"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                  <p class="preview-text">Your video will appear here</p>
+                  <p class="preview-subtext">Configure JSON and click "Render Video"</p>
+                </div>
+
+                <!-- Processing State -->
+                <div id="processingState" class="preview-state" style="display: none;">
+                  <div class="spinner-container">
+                    <div class="spinner"></div>
+                  </div>
+                  <p class="preview-text">Rendering your video...</p>
+                  <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                  </div>
+                  <p class="progress-text" id="progressText">0%</p>
+                  <div class="progress-details" id="progressDetails">
+                    <div>FPS: <span id="fpsValue">0</span> cuadros/seg</div>
+                    <div>Velocidad: <span id="speedValue">0.00</span>x (tiempo real)</div>
+                    <div>Tiempo: <span id="timeValue">00:00:00</span></div>
+                  </div>
+                  <button class="btn btn-secondary" id="cancelBtn" style="margin-top: 1rem;">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none">
+                      <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    Detener Renderizado
+                  </button>
+                </div>
+
+                <!-- Completed State -->
+                <div id="completedState" class="preview-state" style="display: none;">
+                  <video id="videoPreview" controls></video>
+                  <div class="preview-actions">
+                    <button class="btn btn-primary" id="downloadBtn">
+                      <svg class="icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="currentColor"
+                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      Download Video
+                    </button>
+                    <button class="btn btn-secondary" id="resetBtn">
+                      <svg class="icon" viewBox="0 0 24 24" fill="none">
+                        <path d="M1 4v6h6M23 20v-6h-6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round" />
+                        <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15" stroke="currentColor"
+                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                      New Video
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+          <div class="feature">
+            <div class="feature-icon">⚡</div>
+            <h4>Lightning Fast</h4>
+            <p>Powered by FFmpeg for professional-grade rendering</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🎨</div>
+            <h4>Flexible Inputs</h4>
+            <p>URLs, Base64, or local files - your choice</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">📊</div>
+            <h4>Real-Time Progress</h4>
+            <p>WebSocket-powered live updates</p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🔌</div>
+            <h4>n8n Ready</h4>
+            <p>Perfect for workflow automation</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- Docs View -->
+      <div id="docs-view" style="display: none;">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">
+              <svg class="icon" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              API Documentation <span
+                style="font-size: 0.6em; background: var(--primary); padding: 2px 8px; border-radius: 12px; vertical-align: middle; margin-left: 10px;">V2.0
+                UPDATED</span>
+            </h3>
+          </div>
+          <div class="docs-content" id="docsContent">
+            <div class="spinner-container">
+              <div class="spinner"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Notification Container -->
+  <div id="notificationContainer" class="notification-container"></div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="/js/app.js"></script>
+</body>
+
+</html>

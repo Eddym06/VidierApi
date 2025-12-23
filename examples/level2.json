@@ -1,0 +1,35 @@
+{
+    "images": [
+        {
+            "src": "https://images.unsplash.com/photo-1542281286-9e0a16bb7366?w=800",
+            "duration": 10,
+            "effect": "kenburns"
+        }
+    ],
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "fadeIn": 2,
+        "fadeOut": 2,
+        "volume": 0.5
+    },
+    "subtitles": {
+        "src": "/app/subs.srt",
+        "style": "FontSize=36,PrimaryColour=&H00FFFF,BorderStyle=3,Outline=2"
+    },
+    "colorGrading": {
+        "filter": "vintage",
+        "contrast": 1.1,
+        "saturation": 0.8
+    },
+    "watermark": {
+        "src": "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+        "position": "top-right",
+        "opacity": 0.7,
+        "scale": 0.1
+    },
+    "config": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30
+    }
+}

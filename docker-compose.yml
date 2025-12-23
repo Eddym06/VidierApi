@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # Redis for BullMQ
+  redis:
+    image: redis:7-alpine
+    container_name: vidierapi-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # VidierApi application
+  vidierapi:
+    build: .
+    container_name: vidierapi-app
+    ports:
+      - "3002:3002"
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    volumes:
+      - ./temp:/app/temp
+      - ./output:/app/output
+      - ./logs:/app/logs
+      - ./public:/app/public
+      - ./examples:/app/examples
+      - ./src:/app/src
+    depends_on:
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  redis-data:

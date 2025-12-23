@@ -1,0 +1,25 @@
+{
+    "image": {
+        "src": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+        "effect": "kenburns",
+        "zoom": 1.2
+    },
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "volume": 0.5
+    },
+    "text": {
+        "content": "Ken Burns + Text",
+        "position": "bottom",
+        "fontSize": 60,
+        "color": "#FFFFFF",
+        "backgroundColor": "#000000"
+    },
+    "config": {
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "preset": "fast",
+        "crf": 28
+    }
+}

@@ -1,0 +1,120 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eeafadfb-1189-4d3a-b1c8-fa7ef178966e",
+              "name": "imagen_url",
+              "value": "={{ $json.data }}",
+              "type": "string"
+            },
+            {
+              "id": "2825b203-dfc0-46e1-9515-7f4e0108714f",
+              "name": "audio_url",
+              "value": "={{ $('Edit Fields2').item.json.audio_url }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2448,
+        2992
+      ],
+      "id": "9991a551-42bf-4493-8236-5bd3393922a3",
+      "name": "Edit Fields5"
+    },
+    {
+      "parameters": {
+        "operation": "createVideoComplete",
+        "imageUrl": "={{ $json.imagen_url }}",
+        "imageDuration": null,
+        "audioUrl": "={{ $json.audio_url }}"
+      },
+      "type": "CUSTOM.vidierApi",
+      "typeVersion": 1,
+      "position": [
+        2720,
+        2992
+      ],
+      "id": "7aa14189-6452-4a61-92cb-be1601495087",
+      "name": "VidierApi1",
+      "credentials": {
+        "vidierApiApi": {
+          "id": "ptmXBAadd1iDglux",
+          "name": "VidierApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "# Using Community node",
+        "height": 480,
+        "width": 688,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2288,
+        2720
+      ],
+      "id": "42f8006d-207d-41db-b9d9-1c72d374b7c8",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "## Parser for URL names",
+        "height": 208,
+        "width": 288,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2352,
+        2944
+      ],
+      "id": "0a928951-ed4c-41ed-ac6b-a569a90c573d",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Video creator",
+        "height": 208,
+        "width": 256,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2656,
+        2944
+      ],
+      "id": "ad41aa7e-b518-4540-ad44-4538a4d4295b",
+      "name": "Sticky Note6"
+    }
+  ],
+  "connections": {
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "VidierApi1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "d605ba4d36d9204a8eb69f9137140d9f6f6c75e4b6861725e763c19e539e11aa"
+  }
+}

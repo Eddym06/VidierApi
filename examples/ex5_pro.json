@@ -1,0 +1,36 @@
+{
+    "images": [
+        {
+            "src": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131",
+            "duration": 5
+        },
+        {
+            "src": "https://images.unsplash.com/photo-1542281286-9e0a16bb7366",
+            "duration": 5
+        }
+    ],
+    "transition": {
+        "type": "circlecrop",
+        "duration": 1.0
+    },
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
+    },
+    "text": {
+        "content": "Summer 2025",
+        "position": "center",
+        "fontSize": 80,
+        "color": "#FFFF00",
+        "backgroundColor": "#00000055"
+    },
+    "watermark": {
+        "src": "https://cdn-icons-png.flaticon.com/512/25/25231.png",
+        "position": "bottom-right",
+        "opacity": 0.9
+    },
+    "config": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30
+    }
+}

@@ -1,0 +1,43 @@
+{
+    "images": [
+        {
+            "src": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+            "duration": 4
+        },
+        {
+            "src": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=800",
+            "duration": 4
+        },
+        {
+            "src": "https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800",
+            "duration": 4
+        }
+    ],
+    "transition": {
+        "type": "fade",
+        "duration": 1.0
+    },
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "volume": 0.5
+    },
+    "watermark": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
+        "position": "bottom-right",
+        "scale": 0.15,
+        "margin": 20
+    },
+    "text": {
+        "content": "Slideshow Demo",
+        "position": "center",
+        "fontSize": 60,
+        "color": "#FFFFFF",
+        "backgroundColor": "#000000AA"
+    },
+    "config": {
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "preset": "ultrafast"
+    }
+}

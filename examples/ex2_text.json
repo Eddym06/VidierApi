@@ -1,0 +1,23 @@
+{
+    "image": {
+        "src": "https://images.unsplash.com/photo-1518791841217-8f162f1e1131"
+    },
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+    },
+    "text": {
+        "content": "Episodio 1: El comienzo",
+        "position": "bottom",
+        "fontSize": 48,
+        "color": "#FFFFFF",
+        "fontFamily": "Arial",
+        "backgroundColor": "#00000088",
+        "borderWidth": 2,
+        "borderColor": "#FF0000"
+    },
+    "config": {
+        "width": 1280,
+        "height": 720,
+        "fps": 30
+    }
+}

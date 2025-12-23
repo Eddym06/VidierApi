@@ -1,0 +1,30 @@
+{
+    "image": {
+        "src": "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+        "effect": "none"
+    },
+    "audio": {
+        "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+        "volume": 0.5
+    },
+    "watermark": {
+        "src": "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png",
+        "position": "bottom-right",
+        "opacity": 0.8,
+        "scale": 0.25,
+        "margin": 20
+    },
+    "text": {
+        "content": "Watermark Test",
+        "position": "top-left",
+        "fontSize": 48,
+        "color": "#FFFFFF"
+    },
+    "config": {
+        "width": 1280,
+        "height": 720,
+        "fps": 25,
+        "preset": "fast",
+        "crf": 28
+    }
+}

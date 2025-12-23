@@ -1,0 +1,20 @@
+{
+    "description": "Cinematic wide format with Ken Burns and gold subtitles",
+    "config": {
+        "width": 1920,
+        "height": 1080,
+        "fps": 25
+    },
+    "image": {
+        "effect": "kenburns",
+        "zoom": 1.5
+    },
+    "text": {
+        "position": "bottom",
+        "fontSize": 50,
+        "color": "#FFD700",
+        "backgroundColor": "#000000",
+        "borderWidth": 2,
+        "borderColor": "#FFFFFF"
+    }
+}

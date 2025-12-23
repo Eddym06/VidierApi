@@ -1,0 +1,203 @@
+{
+    "name": "VidierApi - Example Workflow",
+    "nodes": [
+        {
+            "parameters": {
+                "path": "vidierapi-webhook",
+                "options": {}
+            },
+            "name": "Webhook",
+            "type": "n8n-nodes-base.webhook",
+            "typeVersion": 1,
+            "position": [
+                250,
+                300
+            ],
+            "webhookId": "example-webhook-id"
+        },
+        {
+            "parameters": {
+                "url": "http://localhost:3002/api/render",
+                "authentication": "none",
+                "requestMethod": "POST",
+                "jsonParameters": true,
+                "options": {},
+                "bodyParametersJson": "={\n  \"image\": {\n    \"src\": \"{{ $json.imageUrl }}\",\n    \"effect\": \"kenburns\",\n    \"zoom\": 1.3\n  },\n  \"audio\": {\n    \"src\": \"{{ $json.audioUrl }}\",\n    \"volume\": 0.8\n  },\n  \"config\": {\n    \"width\": 1920,\n    \"height\": 1080,\n    \"fps\": 30\n  }\n}"
+            },
+            "name": "Submit Render Job",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 3,
+            "position": [
+                450,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "amount": 2,
+                "unit": "seconds"
+            },
+            "name": "Wait",
+            "type": "n8n-nodes-base.wait",
+            "typeVersion": 1,
+            "position": [
+                650,
+                300
+            ],
+            "webhookId": "wait-webhook-id"
+        },
+        {
+            "parameters": {
+                "url": "=http://localhost:3002/api/status/{{ $json.jobId }}",
+                "authentication": "none",
+                "options": {}
+            },
+            "name": "Check Status",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 3,
+            "position": [
+                850,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "string": [
+                        {
+                            "value1": "={{ $json.job.status }}",
+                            "operation": "equals",
+                            "value2": "completed"
+                        }
+                    ]
+                }
+            },
+            "name": "If Completed",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 1,
+            "position": [
+                1050,
+                300
+            ]
+        },
+        {
+            "parameters": {
+                "url": "=http://localhost:3002/api/download/{{ $json.job.id }}?filename=my_video.mp4",
+                "authentication": "none",
+                "options": {
+                    "response": {
+                        "response": {
+                            "responseFormat": "file"
+                        }
+                    }
+                }
+            },
+            "name": "Download Video",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 3,
+            "position": [
+                1250,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "functionCode": "// Process the video\n// Upload to storage, send email, etc.\nreturn items;"
+            },
+            "name": "Process Video",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                1450,
+                200
+            ]
+        },
+        {
+            "parameters": {
+                "functionCode": "// Handle errors or retry\nreturn items;"
+            },
+            "name": "Handle Error",
+            "type": "n8n-nodes-base.function",
+            "typeVersion": 1,
+            "position": [
+                1250,
+                400
+            ]
+        }
+    ],
+    "connections": {
+        "Webhook": {
+            "main": [
+                [
+                    {
+                        "node": "Submit Render Job",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Submit Render Job": {
+            "main": [
+                [
+                    {
+                        "node": "Wait",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Wait": {
+            "main": [
+                [
+                    {
+                        "node": "Check Status",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Check Status": {
+            "main": [
+                [
+                    {
+                        "node": "If Completed",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "If Completed": {
+            "main": [
+                [
+                    {
+                        "node": "Download Video",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Handle Error",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Download Video": {
+            "main": [
+                [
+                    {
+                        "node": "Process Video",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    }
+}

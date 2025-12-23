@@ -1,0 +1,414 @@
+{
+    "nodes": [
+        {
+            "parameters": {
+                "name": "={{ $('AI Agent2').item.json.output.video_name }}",
+                "driveId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "My Drive"
+                },
+                "folderId": {
+                    "__rl": true,
+                    "mode": "list",
+                    "value": "root",
+                    "cachedResultName": "/ (Root folder)"
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleDrive",
+            "typeVersion": 3,
+            "position": [
+                3008,
+                1472
+            ],
+            "id": "41a70da3-8de1-4938-88b8-4a99eb20484f",
+            "name": "Upload file2",
+            "credentials": {
+                "googleDriveOAuth2Api": {
+                    "id": "YR5jOM7qi7KH00hp",
+                    "name": "Google Drive account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "append",
+                "documentId": {
+                    "__rl": true,
+                    "value": "1-24LjpdItzZU1Z3nozfXtENNcAcblbNEPeauwuQeDZU",
+                    "mode": "list",
+                    "cachedResultName": "Suno de ODA",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-24LjpdItzZU1Z3nozfXtENNcAcblbNEPeauwuQeDZU/edit?usp=drivesdk"
+                },
+                "sheetName": {
+                    "__rl": true,
+                    "value": 648478711,
+                    "mode": "list",
+                    "cachedResultName": "Videos",
+                    "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1-24LjpdItzZU1Z3nozfXtENNcAcblbNEPeauwuQeDZU/edit#gid=648478711"
+                },
+                "columns": {
+                    "mappingMode": "defineBelow",
+                    "value": {
+                        "id": "={{ $('Upload file2').item.json.id }}",
+                        "Nombre": "={{ $('Upload file2').item.json.name }}",
+                        "Link": "={{ $('Upload file2').item.json.webContentLink }}",
+                        "Fecha": "={{ $('Upload file2').item.json.createdTime }}"
+                    },
+                    "matchingColumns": [
+                        "id"
+                    ],
+                    "schema": [
+                        {
+                            "id": "Nombre",
+                            "displayName": "Nombre",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "Link",
+                            "displayName": "Link",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true
+                        },
+                        {
+                            "id": "id",
+                            "displayName": "id",
+                            "required": false,
+                            "defaultMatch": true,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true,
+                            "removed": false
+                        },
+                        {
+                            "id": "Fecha",
+                            "displayName": "Fecha",
+                            "required": false,
+                            "defaultMatch": false,
+                            "display": true,
+                            "type": "string",
+                            "canBeUsedToMatch": true,
+                            "removed": false
+                        }
+                    ],
+                    "attemptToConvertTypes": false,
+                    "convertFieldsToString": false
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleSheets",
+            "typeVersion": 4.7,
+            "position": [
+                3024,
+                1680
+            ],
+            "id": "160b2575-d688-401f-ad7f-3a30669ac414",
+            "name": "Append row in sheet1",
+            "credentials": {
+                "googleSheetsOAuth2Api": {
+                    "id": "9gEyTG5JLyU121bN",
+                    "name": "Google Sheets account 2"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "operation": "share",
+                "fileId": {
+                    "__rl": true,
+                    "value": "={{ $json.id }}",
+                    "mode": "id"
+                },
+                "permissionsUi": {
+                    "permissionsValues": {
+                        "role": "writer",
+                        "type": "anyone"
+                    }
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.googleDrive",
+            "typeVersion": 3,
+            "position": [
+                3216,
+                1472
+            ],
+            "id": "8d46b775-dda1-4375-8e0f-2b8ee8da9fff",
+            "name": "Share file1",
+            "credentials": {
+                "googleDriveOAuth2Api": {
+                    "id": "YR5jOM7qi7KH00hp",
+                    "name": "Google Drive account"
+                }
+            }
+        },
+        {
+            "parameters": {
+                "assignments": {
+                    "assignments": [
+                        {
+                            "id": "eeafadfb-1189-4d3a-b1c8-fa7ef178966e",
+                            "name": "imagen_url",
+                            "value": "={{ $json.data }}",
+                            "type": "string"
+                        },
+                        {
+                            "id": "2825b203-dfc0-46e1-9515-7f4e0108714f",
+                            "name": "audio_url",
+                            "value": "={{ $('Edit Fields2').item.json.audio_url }}",
+                            "type": "string"
+                        }
+                    ]
+                },
+                "options": {}
+            },
+            "type": "n8n-nodes-base.set",
+            "typeVersion": 3.4,
+            "position": [
+                1776,
+                1584
+            ],
+            "id": "6d40a8c8-b4bf-4488-bf4b-15bd192905f7",
+            "name": "Edit Fields1"
+        },
+        {
+            "parameters": {
+                "method": "POST",
+                "url": "http://100.65.156.108:3002/api/render",
+                "sendBody": true,
+                "specifyBody": "json",
+                "jsonBody": "={\n  \"image\": {\n    \"src\": \"{{ $json.imagen_url }}\",\n    \"effect\": \"kenburns\",\n    \"zoom\": 1.2\n  },\n  \"audio\": {\n    \"src\": \"{{ $json.audio_url }}\",\n    \"volume\": 0.7\n  },\n  \"config\": {\n    \"width\": 1280,\n    \"height\": 720,\n    \"fps\": 25,\n    \"preset\": \"fast\",\n    \"crf\": 28\n  }\n}",
+                "options": {}
+            },
+            "id": "f49d5a33-4fd0-4317-885e-a23f4ab994a2",
+            "name": "POST Render Job",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                1968,
+                1584
+            ]
+        },
+        {
+            "parameters": {
+                "amount": 10,
+                "unit": "seconds"
+            },
+            "id": "d9e60ce3-0049-4fed-b315-1bedd800c880",
+            "name": "Esperar Inicio",
+            "type": "n8n-nodes-base.wait",
+            "typeVersion": 1.1,
+            "position": [
+                2192,
+                1584
+            ],
+            "webhookId": "wait-initial"
+        },
+        {
+            "parameters": {
+                "method": "GET",
+                "url": "http://100.65.156.108:3002/api/status/{{ $('POST Render Job').item.json.jobId }}",
+                "options": {}
+            },
+            "id": "1c7c1524-b06c-4318-b80c-b5d5ffca8f0d",
+            "name": "GET Status",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                2416,
+                1584
+            ]
+        },
+        {
+            "parameters": {
+                "conditions": {
+                    "options": {
+                        "caseSensitive": true,
+                        "leftValue": "",
+                        "typeValidation": "strict",
+                        "version": 1
+                    },
+                    "conditions": [
+                        {
+                            "id": "condition-1",
+                            "leftValue": "={{ $json.job.status }}",
+                            "rightValue": "completed",
+                            "operator": {
+                                "type": "string",
+                                "operation": "equals"
+                            }
+                        }
+                    ],
+                    "combinator": "and"
+                },
+                "options": {}
+            },
+            "id": "96b6f916-9b93-464b-a05e-1e85dd3a1ab1",
+            "name": "¿Completado?",
+            "type": "n8n-nodes-base.if",
+            "typeVersion": 2,
+            "position": [
+                2592,
+                1584
+            ]
+        },
+        {
+            "parameters": {
+                "method": "GET",
+                "url": "http://100.65.156.108:3002/api/download/{{ $json.job.id }}",
+                "options": {
+                    "response": {
+                        "response": {
+                            "responseFormat": "file"
+                        }
+                    }
+                }
+            },
+            "id": "ee3386c9-268b-4f8c-8c28-7ba62cd032c8",
+            "name": "GET Download Video",
+            "type": "n8n-nodes-base.httpRequest",
+            "typeVersion": 4.2,
+            "position": [
+                2800,
+                1472
+            ]
+        },
+        {
+            "parameters": {
+                "amount": 2,
+                "unit": "seconds"
+            },
+            "id": "3fe0b72b-0c71-4d37-93de-283098a00a30",
+            "name": "Esperar y Reintentar",
+            "type": "n8n-nodes-base.wait",
+            "typeVersion": 1.1,
+            "position": [
+                2800,
+                1680
+            ],
+            "webhookId": "wait-loop"
+        }
+    ],
+    "connections": {
+        "Upload file2": {
+            "main": [
+                [
+                    {
+                        "node": "Share file1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Append row in sheet1": {
+            "main": [
+                []
+            ]
+        },
+        "Share file1": {
+            "main": [
+                [
+                    {
+                        "node": "Append row in sheet1",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Edit Fields1": {
+            "main": [
+                [
+                    {
+                        "node": "POST Render Job",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "POST Render Job": {
+            "main": [
+                [
+                    {
+                        "node": "Esperar Inicio",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Esperar Inicio": {
+            "main": [
+                [
+                    {
+                        "node": "GET Status",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "GET Status": {
+            "main": [
+                [
+                    {
+                        "node": "¿Completado?",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "¿Completado?": {
+            "main": [
+                [
+                    {
+                        "node": "GET Download Video",
+                        "type": "main",
+                        "index": 0
+                    }
+                ],
+                [
+                    {
+                        "node": "Esperar y Reintentar",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "GET Download Video": {
+            "main": [
+                [
+                    {
+                        "node": "Upload file2",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        },
+        "Esperar y Reintentar": {
+            "main": [
+                [
+                    {
+                        "node": "GET Status",
+                        "type": "main",
+                        "index": 0
+                    }
+                ]
+            ]
+        }
+    },
+    "pinData": {}
+}

@@ -1,0 +1,134 @@
+{
+  "simple_video": {
+    "description": "Video simple con imagen y texto",
+    "config": {
+      "mode": "simple",
+      "videoFormat": "16:9",
+      "fps": 30,
+      "imageUrl": "https://picsum.photos/1920/1080",
+      "imageDuration": 10,
+      "kenBurns": true,
+      "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+      "audioVolume": 0.8,
+      "textOverlay": "¡Bienvenido a VidierApi!",
+      "textPosition": "bottom"
+    }
+  },
+  "tiktok_video": {
+    "description": "Video vertical para TikTok/Reels",
+    "config": {
+      "mode": "simple",
+      "videoFormat": "9:16",
+      "fps": 30,
+      "imageUrl": "https://picsum.photos/1080/1920",
+      "imageDuration": 15,
+      "kenBurns": true,
+      "textOverlay": "Contenido Viral 🔥",
+      "textPosition": "center"
+    }
+  },
+  "advanced_json": {
+    "description": "Especificación JSON completa",
+    "config": {
+      "mode": "advanced",
+      "videoSpec": {
+        "config": {
+          "width": 1920,
+          "height": 1080,
+          "fps": 30
+        },
+        "assets": [
+          {
+            "type": "image",
+            "src": "https://picsum.photos/1920/1080?random=1",
+            "start": 0,
+            "duration": 5,
+            "transition": {
+              "type": "fade",
+              "duration": 1
+            }
+          },
+          {
+            "type": "image",
+            "src": "https://picsum.photos/1920/1080?random=2",
+            "start": 5,
+            "duration": 5,
+            "transition": {
+              "type": "fade",
+              "duration": 1
+            }
+          },
+          {
+            "type": "audio",
+            "src": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+            "start": 0,
+            "volume": 0.6
+          }
+        ],
+        "overlays": [
+          {
+            "type": "text",
+            "text": "Slide 1",
+            "start": 0,
+            "duration": 5,
+            "position": {
+              "x": "center",
+              "y": 100
+            },
+            "style": {
+              "fontSize": 64,
+              "fontColor": "#FFFFFF",
+              "backgroundColor": "rgba(0,0,0,0.7)",
+              "padding": 20
+            },
+            "animation": {
+              "fadeIn": 0.5,
+              "fadeOut": 0.5
+            }
+          },
+          {
+            "type": "text",
+            "text": "Slide 2",
+            "start": 5,
+            "duration": 5,
+            "position": {
+              "x": "center",
+              "y": 100
+            },
+            "style": {
+              "fontSize": 64,
+              "fontColor": "#FFFFFF",
+              "backgroundColor": "rgba(0,0,0,0.7)",
+              "padding": 20
+            },
+            "animation": {
+              "fadeIn": 0.5,
+              "fadeOut": 0.5
+            }
+          }
+        ]
+      }
+    }
+  },
+  "template_based": {
+    "description": "Usando template predefinido",
+    "config": {
+      "mode": "template",
+      "template": "social-post",
+      "templateOverrides": {
+        "assets": [
+          {
+            "type": "image",
+            "src": "https://picsum.photos/1080/1920"
+          }
+        ],
+        "overlays": [
+          {
+            "type": "text",
+            "text": "Mi Contenido Personalizado"
+          }
+        ]
+      }
+    }
+  }
+}

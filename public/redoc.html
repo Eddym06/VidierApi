@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VidierApi - ReDoc Documentation</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎬</text></svg>">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Custom Navigation Bar */
+        .custom-navbar {
+            background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%);
+            color: white;
+            padding: 20px 40px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .custom-navbar h1 {
+            margin: 0;
+            font-size: 1.8rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .custom-navbar .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .custom-navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .custom-navbar a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .custom-navbar a.active {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            .custom-navbar {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .custom-navbar h1 {
+                font-size: 1.5rem;
+            }
+            
+            .custom-navbar .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Navigation -->
+    <div class="custom-navbar">
+        <h1>
+            <span>🎬</span>
+            <span>VidierApi Documentation</span>
+        </h1>
+        <div class="nav-links">
+            <a href="/api-docs">Swagger UI</a>
+            <a href="/redoc" class="active">ReDoc</a>
+            <a href="/api/openapi.json" target="_blank">OpenAPI JSON</a>
+            <a href="/" target="_blank">Home</a>
+        </div>
+    </div>
+    
+    <!-- ReDoc Container -->
+    <redoc spec-url='/api/openapi.json'
+           scroll-y-offset=".custom-navbar"
+           hide-hostname="true"
+           theme='{
+               "colors": {
+                   "primary": {
+                       "main": "#6366f1"
+                   },
+                   "success": {
+                       "main": "#10b981"
+                   },
+                   "warning": {
+                       "main": "#f59e0b"
+                   },
+                   "error": {
+                       "main": "#ef4444"
+                   },
+                   "text": {
+                       "primary": "#1f2937",
+                       "secondary": "#6b7280"
+                   },
+                   "border": {
+                       "dark": "#e5e7eb",
+                       "light": "#f3f4f6"
+                   },
+                   "http": {
+                       "get": "#6366f1",
+                       "post": "#10b981",
+                       "put": "#f59e0b",
+                       "delete": "#ef4444",
+                       "patch": "#8b5cf6"
+                   }
+               },
+               "typography": {
+                   "fontSize": "16px",
+                   "lineHeight": "1.6",
+                   "fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+                   "headings": {
+                       "fontFamily": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+                       "fontWeight": "700"
+                   },
+                   "code": {
+                       "fontSize": "14px",
+                       "fontFamily": "Monaco, \"Courier New\", monospace",
+                       "backgroundColor": "#f8f9fa",
+                       "color": "#1f2937"
+                   }
+               },
+               "sidebar": {
+                   "backgroundColor": "#ffffff",
+                   "textColor": "#1f2937",
+                   "activeTextColor": "#6366f1",
+                   "groupItems": {
+                       "textTransform": "uppercase"
+                   },
+                   "level1Items": {
+                       "textTransform": "none"
+                   },
+                   "arrow": {
+                       "color": "#9ca3af"
+                   }
+               },
+               "rightPanel": {
+                   "backgroundColor": "#1f2937",
+                   "textColor": "#f9fafb"
+               },
+               "codeBlock": {
+                   "backgroundColor": "#282c34"
+               },
+               "spacing": {
+                   "unit": 5,
+                   "sectionHorizontal": 40,
+                   "sectionVertical": 40
+               },
+               "shape": {
+                   "borderRadius": "8px"
+               },
+               "logo": {
+                   "maxHeight": "50px",
+                   "maxWidth": "200px",
+                   "gutter": "20px"
+               }
+           }'
+           lazy-rendering
+           native-scrollbars
+           path-in-middle-panel
+           required-props-first
+           expand-responses="200,201"
+           json-sample-expand-level="2"
+           show-extensions
+           sort-props-alphabetically>
+    </redoc>
+    
+    <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.js"></script>
+</body>
+</html>

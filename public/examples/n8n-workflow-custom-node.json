@@ -1,0 +1,63 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "render",
+        "imageSrc": "={{ $json.data }}",
+        "audioSrc": "={{ $('Edit Fields2').item.json.audio_url }}",
+        "options": {
+          "config": {
+            "config": {
+              "crf": 28,
+              "fps": 25,
+              "height": 720,
+              "preset": "fast",
+              "width": 1280
+            }
+          },
+          "image": {
+            "image": {
+              "effect": "kenburns",
+              "zoom": 1.2
+            }
+          }
+        }
+      },
+      "id": "22222222-2222-2222-2222-222222222222",
+      "name": "VidierApi",
+      "type": "n8n-nodes-vidierapi.vidierApi",
+      "typeVersion": 1,
+      "position": [
+        2704,
+        2608
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Using Custom Node",
+        "height": 320,
+        "width": 480,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        2560
+      ],
+      "id": "33333333-3333-3333-3333-333333333333",
+      "name": "Sticky Note4"
+    }
+  ],
+  "connections": {
+    "VidierApi": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "instanceId": "d605ba4d36d9204a8eb69f9137140d9f6f6c75e4b6861725e763c19e539e11aa"
+  }
+}
